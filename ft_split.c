@@ -6,7 +6,7 @@
 /*   By: mfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:47:11 by mfontain          #+#    #+#             */
-/*   Updated: 2025/11/09 21:29:23 by mfontain         ###   ########.fr       */
+/*   Updated: 2025/11/14 01:19:04 by mfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -59,10 +59,10 @@ char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		len;
-	char	**final_tab;
+	char	**tab;
 
-	final_tab = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
-	if (!final_tab)
+	tab = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	if (!tab)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -72,14 +72,14 @@ char	**ft_split(char const *s, char c)
 		if (*s)
 		{
 			len = ft_word_len(s, c);
-			final_tab[i] = malloc((len + 1) * sizeof(char));
-			if (!final_tab[i])
-				return (free_all(final_tab, i));
-			ft_strlcpy(final_tab[i], s, len + 1);
+			tab[i] = malloc((len + 1) * sizeof(char));
+			if (!tab[i])
+				return (free_all(tab, i));
+			ft_strlcpy(tab[i], s, len + 1);
 			i++;
 			s += len;
 		}
 	}
-	final_tab[i] = NULL;
-	return (final_tab);
+	tab[i] = NULL;
+	return (tab);
 }

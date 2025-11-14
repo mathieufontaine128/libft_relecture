@@ -6,12 +6,12 @@
 /*   By: mfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 14:57:11 by mfontain          #+#    #+#             */
-/*   Updated: 2025/11/09 22:55:56 by mfontain         ###   ########.fr       */
+/*   Updated: 2025/11/14 01:28:54 by mfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	ft_set_len(long nb)
+static int	ft_len(long nb)
 {
 	int	i;
 
@@ -39,8 +39,8 @@ char	*ft_itoa(int n)
 	int		len;
 
 	nb = n;
-	len = ft_set_len(nb);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	len = ft_len(nb);
+	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
 	str[len] = '\0';
