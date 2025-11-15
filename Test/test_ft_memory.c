@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   test_ft_memory.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:04:38 by mfontain          #+#    #+#             */
-/*   Updated: 2025/11/09 18:42:51 by mfontain         ###   ########.fr       */
+/*   Created: 2025/11/11 23:08:45 by mfontain          #+#    #+#             */
+/*   Updated: 2025/11/13 18:22:35 by mfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+int main(void)
 {
-	size_t	i;
-	size_t	j;
+	char	dest[] = "12345";
+	char	src[] = "xxx";
 
-	if (len == 0 && *little != '\0')
-		return (NULL);
-	if (little[0] == '\0')
-		return ((char *)big);
-	i = 0;
-	while (big[i] && i < len)
-	{
-		j = 0;
-		while (i + j < len && little[j] && big[i + j] == little[j])
-			j++;
-		if (little[j] == '\0')
-			return ((char *)&big[i]);
-		i++;
-	}
-	return (NULL);
+	printf("%p\n", memcpy(dest,src,0));
+	char dest2[] = "12345";
+	char src2[] = "xxx";	
+	printf("%p\n", ft_memcpy(dest2,src2,0));
+	//printf("%p\n", memcpy(dest3, src3,2));
+	//printf("%p\n", ft_memcpy(dest4,src4,2));
+	return (0);
 }
+

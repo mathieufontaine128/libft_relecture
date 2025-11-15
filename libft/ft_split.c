@@ -6,7 +6,7 @@
 /*   By: mfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:47:11 by mfontain          #+#    #+#             */
-/*   Updated: 2025/11/14 01:19:04 by mfontain         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:53:23 by mfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -55,12 +55,14 @@ static char	**free_all(char **tab, int count)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+/*char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		len;
 	char	**tab;
 
+	if (!s)
+		return (NULL);
 	tab = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
 	if (!tab)
 		return (NULL);
@@ -75,10 +77,37 @@ char	**ft_split(char const *s, char c)
 			tab[i] = malloc((len + 1) * sizeof(char));
 			if (!tab[i])
 				return (free_all(tab, i));
-			ft_strlcpy(tab[i], s, len + 1);
-			i++;
+			ft_strlcpy(tab[i++], s, len + 1);
 			s += len;
 		}
+	}
+	tab[i] = NULL;
+	return (tab);
+}*/
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	int		len;
+	char	**tab;
+
+	if (!s)
+		return (NULL);
+	tab = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (*s && *s == c)
+		s++;
+	while (*s)
+	{
+		len = ft_word_len(s, c);
+		tab[i] = malloc((len + 1) * sizeof(char));
+		if (!tab[i])
+			return (free_all(tab, i));
+		ft_strlcpy(tab[i++], s, len + 1);
+		s += len;
+		while (*s && *s == c)
+			s++;
 	}
 	tab[i] = NULL;
 	return (tab);

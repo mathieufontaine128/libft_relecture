@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_fc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: [TonNom]                                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/13                                #+#    #+#             */
+/*   Updated: 2025/11/14 01:57:55 by mfontain         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
+
+/* Fonction callback pour ft_striteri */
+void to_upper_idx(unsigned int i, char *c)
+{
+    if (*c >= 'a' && *c <= 'z')
+        *c = *c - 32 + (i % 2); // juste pour montrer l'indice (exemple)
+}
+
+/* Fonction callback pour ft_strmapi */
+char map_to_digit(unsigned int i, char c)
+{
+    if (c >= 'a' && c <= 'z')
+        return '0' + (i % 10); // remplace lettre par chiffre selon indice
+    return c;
+}
+
+int main(void)
+{
+    char s1[] = "abcdef";
+    char s2[] = "hello42";
+    char *res;
+
+    printf("===== ft_striteri =====\n");
+    printf("Avant : %s\n", s1);
+    ft_striteri(s1, to_upper_idx);
+    printf("Après : %s\n\n", s1);
+
+    printf("===== ft_strmapi =====\n");
+    printf("Avant : %s\n", s2);
+    res = ft_strmapi(s2, map_to_digit);
+    printf("Après : %s\n\n", res);
+    free(res);
+
+    printf("===== Cas limites =====\n");
+    ft_striteri(NULL, to_upper_idx); // ne doit rien faire, pas de crash
+    res = ft_strmapi(NULL, map_to_digit);
+    printf("ft_strmapi NULL : %p\n", res); // doit retourner NULL
+    free(res);
+
+    printf("===== FIN DES TESTS ft_striteri & ft_strmapi =====\n");
+    return 0;
+}
+

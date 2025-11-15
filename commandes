@@ -1,0 +1,1 @@
+cc -Wall -Wextra -Werror Test/test_ascii_2.c -Ilibft -Llibft -lft -o test_ascii
