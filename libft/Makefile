@@ -6,7 +6,7 @@
 #    By: mfontain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/04 22:29:49 by mfontain          #+#    #+#              #
-#    Updated: 2025/11/14 02:10:22 by mfontain         ###   ########.fr        #
+#    Updated: 2025/11/16 17:44:26 by mfontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupp
 
 
 OBJS	= $(SRCS:.c=.o)
+HEADERs = libft.h
 
 CC	= cc
 RM	= rm -f
@@ -30,6 +31,9 @@ all:	$(NAME)
 
 $(NAME):	$(OBJS)
 		ar rcs $(NAME) $(OBJS)
+
+$(OBJS):	$(HEADERS)
+
 clean:
 		$(RM) $(OBJS)
 
